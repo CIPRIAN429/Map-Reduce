@@ -1,0 +1,11 @@
+Pasare Catalin-Ciprian 334CB
+
+						Tema_1 APD
+
+
+	La inceputul temei declar structurile si variabilele folosite, initializez bariera si citesc M, R si numele fisierului din linia de comanda.
+Mai apoi urmeaza impartirea echilibrata a fisierelor intre cele M threaduri.
+Aceasta se face in felul urmator: la fiecare moment de timp voi avea stocat in structura fiecarui thread memoria ocupata de fisierele care ii sunt repartizate. Fac un minim intre aceste dimensiuni, iar apoi toate threadurile care au aceasta valoare vor primi cate un fisier. In acest fel se asigura faptul ca la fiecare moment de timp un fisier va ajunge sa fie procesat de threadul cel mai liber (cu cel mai putin file_size de procesat). 
+	Dupa aceasta impartire se pornesc cele M+R threaduri. In functia thread_function se declara o structura de tip vector static (pentru a putea fi utilizata de toate threadurile, este o resursa comuna) apoi se verifica ce thread se afla in functie. Daca thread-ul are id mai mic decat M atunci va putea fi folosit la determinarea numerelor putere perfecta din fisierele asignate lui. Aceasta determinare se face in felul urmator: pentru fiecare numar si pentru fiecare exponent de la 2 la R+1 se apeleaza functia perfect. Aceasta functie va face o cautare binara intre 2 si numarul care se verifica, scopul acestei cautari este de a verifica in timp logaritmic daca numarul este perfect (se inmulteste mijlocul cu el insusi de exponent ori si se verifica dupa fiecare imultire daca rezultatul a trecut de numarul initial, caz in care se cauta mai departe sau se returneaza true daca se obtine egalitate). Dupa cum se poate observa nu se utilizeaza nicio functie matematica (sqrt, pow, log etc.) Numerele perfecte se adauga in map-ul care are ca si cheie puterea si ca si valoare numarul.
+	Mai departe se pune o bariera pentru ca thread-urile de map sa isi termine treaba inainte ca cele reduce sa porneasca. Mai apoi fiecare thread reduce ia valorile putere perfecta corespondente lui (ca in enunt) si le adauga intr-un set pentru a elimina duplicatele. La final fiecare thread reduce afiseaza numarul de elemente obtinute in fisierul de iesire corespunzator.
+	Local obtin punctaj maxim la rulari multiple.
